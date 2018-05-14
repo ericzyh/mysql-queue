@@ -13,7 +13,7 @@ class Consumer
     private $getMessageSql = "select id,queue_name,message,(add_time + delay) as consume_time
         from message_queue
         where queue_name = :queue_name and status = 0 having consume_time < unix_timestamp()
-        order by priority desc, consume_time asc, id asc";
+        order by priority desc, consume_time asc, id asc limit 1";
 
     private $updateMessageSql = "update message_queue set status = :status where id = :id";
 

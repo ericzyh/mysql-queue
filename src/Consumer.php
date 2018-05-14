@@ -28,6 +28,11 @@ class Consumer
         }
     }
 
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
     public function consume($queueName, $callback, $sleep)
     {
         while (true) {

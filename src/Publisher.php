@@ -8,7 +8,7 @@ class Publisher
     public $pdo = null;
 
     public static $defaultMessageOption = [
-        "delay" => 0,
+        "delay" => 900,
         "priority" => 1,
         "routing_key" => '',
     ];

@@ -10,8 +10,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "symfony/console": "^3.4",
-        "symfony/templating": "^3.4"
+        "symfony/console": "^3.4"
     },
     "autoload": {
         "psr-4": {

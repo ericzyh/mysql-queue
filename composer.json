@@ -1,0 +1,23 @@
+{
+    "name": "claytonxia/mysql-queue",
+    "description": "tiny message queue based on mysql",
+    "type": "library",
+    "authors": [
+        {
+            "name": "xiakai",
+            "email": "xiakai@51cto.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/console": "^3.4",
+        "symfony/templating": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "MysqlQueue\\": "src/",
+            "MysqlQueueBin\\": "bin/"
+        }
+    },
+    "bin": ["bin/mysql-queue"]
+}

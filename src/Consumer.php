@@ -20,7 +20,7 @@ class Consumer
     public function __construct($host, $port, $user, $password, $database)
     {
         try {
-            $this->pdo = new \Pdo("mysql:host=$host;port=$port;dbname=$database", $user, $password);
+            $this->pdo = new \Pdo("mysql:host=$host;port=$port;dbname=$database", $user, $password, [\PDO::ATTR_PERSISTENT => true]);
             $this->getMessageStmt = $this->pdo->prepare($this->getMessageSql);
             $this->updateMessageStmt = $this->pdo->prepare($this->updateMessageSql);
         } catch (\Exception $e) {

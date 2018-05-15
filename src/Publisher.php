@@ -27,11 +27,22 @@ class Publisher
     /**
      * 消息入列
      */
-    public function publish($queueName, $message, $messageOption = [])
+    public function publish($queueName, $message, $messageOption = [], $removeDuplicate = false)
     {
         $queueName || die("queue name cannot be null");
         $message || die("message cannot be null");
         is_array($message) && $message = json_encode($message, true);
+        //消息去重
+        if ($removeDuplicate) {
+            $checkDuplidateSql = "select count(*) from message_queue
+            where status=0 and queue_name = :queue_name and message = :message";
+            $checkDuplidateStmt = $this->pdo->prepare($checkDuplidateSql);
+            $checkDuplidateStmt->execute([":queue_name" => $queueName, ":message" => $message]);
+            $duplicateCount = $checkDuplidateStmt->fetchColumn();
+            if ($duplicateCount) {
+                return true;
+            }
+        }
         $messageOption = self::$defaultMessageOption + $messageOption;
         $messageRecord = [
             ":queue_name" => $queueName,
